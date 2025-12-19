@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>For You</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at top, #222, #000);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    #lyrics {
+      font-size: 42px;       /* BIG */
+      font-weight: bold;     /* BOLD */
+      max-width: 90%;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="lyrics"></div>
+
+  <audio id="audio" src="Screen_Recording_20251219_225104_YouTube.mp3"></audio>
+
+  <script>
+    const lyrics = [
+      "Hoke tetho duur mein",
+      "Khoya apne aap nu",
+      "Adda hissa mere dil da",
+      "Hoeya tere khilaaf kyun",
+      "Adda dil chaunda ae tenu",
+      "Karni chaunda baat kyun",
+      "Tareyaan di roshni de wangu",
+      "Gal nal laaja raat nu",
+      "Dil mere nu samjhaja",
+      "Hathan wich hath tu paaja"
+    ];
+
+    // YOUR EXACT TIMINGS (seconds)
+    const timings = [
+      3,
+      5.80,
+      8.21,
+      10.52,
+      13,
+      15.7,
+      17.85,
+      20.20,
+      22.50,
+      25.9
+    ];
+
+    const audio = document.getElementById("audio");
+    const lyricBox = document.getElementById("lyrics");
+
+    audio.play();
+
+    lyrics.forEach((line, index) => {
+      setTimeout(() => {
+        lyricBox.style.opacity = 0;
+        setTimeout(() => {
+          lyricBox.textContent = line;
+          lyricBox.style.opacity = 1;
+        }, 200);
+      }, (timings[index] * 1000) - 200); // 0.2s early
+    });
+  </script>
+
+</body>
+</html>
